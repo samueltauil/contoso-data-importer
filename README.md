@@ -1,73 +1,27 @@
-# React + TypeScript + Vite
+# Contoso Data Importer Demo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+This repository captures a multi-agent GitHub Copilot Chat walkthrough that transforms a UI mockup into a React-based experience. Each interaction uses specialized custom chat modes to showcase how orchestrated agents can design, implement, and validate an application from a single UI mockup (shown below and stored in `docs/contoso-importer-mockup.jpg`).
 
-Currently, two official plugins are available:
+![Contoso Data Importer mockup](docs/contoso-importer-mockup.jpg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Multi-Agent Workflow
+The demo can be replayed by reenacting the prompts stored under `.github/prompts/`:
+- `create-ai-agents.prompt.md` seeds the custom chat modes required for the scenario.
+- `create-ui.prompt.md` drives the UI-centered workflow that the orchestrator and downstream agents consume.
 
-## React Compiler
+### Orchestration Phases
+1. **Agent Creation** – Run the `create-ai-agents` prompt to scaffold tailored chat modes for orchestration, development, and QA.
+2. **Implementation Planning** – In the AI Orchestrator chat mode, execute “Analyze `create-ui.prompt.md` and coordinate an implementation plan” to produce the build roadmap.
+3. **UI Development** – Switch to the Developer chat mode with “Implement React UI based on orchestrator's plan” to generate the user interface assets.
+4. **Quality Validation** – In the QA Analyst chat mode, run “Test and validate implementation.”
+5. **Final Coordination** – Ask the AI Orchestrator to perform “Final coordination and completion validation” to consolidate the outcome.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Using Branch Checkpoints
+Branch snapshots document each phase in sequence: `main`, `agents`, `implementation-plan`, `code`, and `tests`. They are intentionally provided as optional starting points when time constraints make it impractical to regenerate every artifact live. For a full end-to-end demo, begin on `main` and reproduce the workflow with the prompts above. When a shorter session is needed, jump to the branch that best represents the stage you want to highlight and resume the story from there.
 
-## Expanding the ESLint configuration
+## Demo Tips
+- Show how the orchestrator prompt produces a plan that downstream agents follow, underscoring the coordination benefits of custom chat modes.
+- Compare the generated artifacts between branches to illustrate incremental progress and agent collaboration.
+- Emphasize that only the mockup image lives in `docs/`, reinforcing that all other assets are generated in response to the guided multi-agent dialogue.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
