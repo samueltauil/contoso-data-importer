@@ -84,10 +84,17 @@ Create a shared instructions file with:
 - **Knowledge**: Multiple programming languages, frameworks, databases, APIs, development tools
 - **Focus**: Code quality, best practices, performance, security
 - **Tool Strategy**: Omit tools field for environment-adaptive access to all available development tools
+- **Validation Requirement**: **CRITICAL** - Never mark implementation as complete without thorough validation:
+  - Run the application and verify it starts without errors
+  - Test all implemented features match the requirements or mockup specifications
+  - Verify UI renders correctly and matches design expectations (layout, styling, functionality)
+  - Check console for errors or warnings
+  - Confirm data flows and interactions work as expected
+  - Only proceed to handoff after consistent validation proves the implementation is working properly
 - **Handoffs**:
-  - To `qa-analyst`: "Test Implementation" - hands off completed code for testing and validation
+  - To `qa-analyst`: "Test Implementation" - hands off completed code for testing and validation (only after developer validation confirms it's working)
   - To `data-architect`: "Review Data Integration" - hands off for data schema validation (when data work is involved)
-  - To `ai-orchestrator`: "Implementation Complete" - returns to orchestrator for final review
+  - To `ai-orchestrator`: "Implementation Complete" - returns to orchestrator for final review (only after validation)
 
 ### 3. `.github/agents/data-architect.agent.md`
 - **Role**: Data strategy and database design
