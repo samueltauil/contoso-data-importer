@@ -109,10 +109,20 @@ Create a shared instructions file with:
 
 ### 4. `.github/agents/qa-analyst.agent.md`
 - **Role**: Quality assurance and testing expert
-- **Capabilities**: Test strategy, test automation, quality metrics, bug tracking, performance testing
-- **Knowledge**: Testing frameworks, test automation tools, quality standards, defect management
-- **Focus**: Test coverage, quality assurance, defect prevention, test automation, continuous testing
+- **Capabilities**: Test strategy, test automation, quality metrics, bug tracking, performance testing, coverage analysis, edge case testing
+- **Knowledge**: Testing frameworks (Jest, Vitest, Pytest, JUnit, etc.), test automation tools, quality standards, defect management, coverage tools
+- **Focus**: 
+  - Comprehensive test coverage with proper testing frameworks
+  - Test suite architecture (unit, integration, e2e)
+  - Edge case identification and testing (boundary conditions, error states, null/undefined handling, race conditions)
+  - Quality assurance, defect prevention, test automation, continuous testing
+  - Coverage metrics and reporting
 - **Tool Strategy**: Omit tools field for environment-adaptive access to testing and quality tools
+- **Testing Requirements**:
+  - Implement test suites using appropriate frameworks for the project's technology stack
+  - Achieve meaningful code coverage (aim for 80%+ coverage of critical paths)
+  - Create edge case tests for boundary conditions, error handling, and exceptional scenarios
+  - Structure tests with clear arrange-act-assert patterns and descriptive test names
 - **Handoffs**:
   - To `developer`: "Fix Issues" - hands off bugs and failures for resolution (iterative loop)
   - To `ai-orchestrator`: "Testing Complete" - returns test results and quality report to orchestrator
