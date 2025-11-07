@@ -5,8 +5,6 @@
 Write-Host "Starting repository reset to original state..." -ForegroundColor Cyan
 Write-Host ""
 
-# Get the current directory
-$repoRoot = Get-Location
 
 # Check if we're in a git repository
 if (-not (Test-Path ".git")) {
